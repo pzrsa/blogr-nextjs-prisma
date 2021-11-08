@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import Post from "../components/Post";
 import prisma from "../lib/prisma";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const feed = await prisma.post.findMany({
     where: { published: true },
     include: {
