@@ -22,14 +22,17 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 async function publishPost(id) {
-  await fetch(`http://localhost:3000/api/publish/${id}`, {
-    method: "PUT",
-  });
+  await fetch(
+    `https://parsa-blogr-nextjs-prisma.vercel.app//api/publish/${id}`,
+    {
+      method: "PUT",
+    }
+  );
   await Router.push("/");
 }
 
 async function deletePost(id) {
-  await fetch(`http://localhost:3000/api/post/${id}`, {
+  await fetch(`https://parsa-blogr-nextjs-prisma.vercel.app//api/post/${id}`, {
     method: "DELETE",
   });
   Router.push("/");
