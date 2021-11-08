@@ -1,21 +1,17 @@
 import React from "react";
 import Layout from "../components/Layout";
 import Post from "../components/Post";
+import prisma from "../lib/prisma";
 
 export const getStaticProps = async () => {
-  const feed = [
-    {
-      id: 1,
-      title: "Prisma is the perfect ORM for Next.js",
-      content:
-        "[Prisma](https://github.com/prisma/prisma) and Next.js go _great_ together!",
-      published: false,
+  const feed = await prisma.post.findMany({
+    where: { published: true },
+    include: {
       author: {
-        name: "Nikolas Burk",
-        email: "burk@prisma.io",
+        select: { name: true },
       },
     },
-  ];
+  });
   return { props: { feed } };
 };
 
